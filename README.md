@@ -20,7 +20,7 @@ This is the automation task for test crew and the project includes the below:
 **How to Run the project**
 - To run the STC subscription test cases run the below command.   
   `mvn test -Dcucumber.filter.tags=@STCWeb`.
-- To run the OrangeHRM API test cases run the below command.
+- To run the OrangeHRM API test cases run the below command.  
   `mvn test -Dcucumber.filter.tags=@OrangeHrmAPI`.
 
 **Report**.   
