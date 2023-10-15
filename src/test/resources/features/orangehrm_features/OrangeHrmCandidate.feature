@@ -20,6 +20,7 @@ Feature: Orange HRM candidate scenarios
     Given I search candidates using API with shortlisted status "2" and limit "10" and receive 200 status code
     Then I should receive search response with all the applicants having "shortlisted" application status "2"
 
-  Scenario: Delete candidate using id
-    Given I delete candidate using API with 191 id and receive 200 status code
-    Then I should receive successful delete response with 191 id
+  Scenario: Delete candidate using id created above
+    Given I create candidate using API with "delete" and "candidate" and "delete@delete.com" with "true" and receive 200
+    Given I delete candidate created above using API with the candidate id and receive 200 status code
+    Then I should receive successful delete response with the same candidate id

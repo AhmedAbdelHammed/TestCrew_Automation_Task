@@ -23,6 +23,7 @@ public class OrangeHrmCandidateStepdefs {
 
     private final LoginPage loginPage;
     private String cookieValue = "";
+    public Integer candidateId = 0;
     private CreateCandidateResponseModel createCandidateResponseModel;
     private SearchCandidateResponseModel searchCandidateResponseModel;
     private DeleteCandidateResponseModel deleteCandidateResponseModel;
@@ -58,6 +59,7 @@ public class OrangeHrmCandidateStepdefs {
     @Given("I create candidate using API with {string} and {string} and {string} with {string} and receive {int}")
     public void iCreateACandidateUsingOrangeHRMAPIWithAndAndWith(String firstName, String lastName, String email, String consent, int statusCode) throws JsonProcessingException {
         createCandidateResponseModel = CandidateUtils.getCreateCandidateResponse(cookieValue,firstName,lastName,email,Boolean.parseBoolean(consent),statusCode);
+        candidateId = createCandidateResponseModel.data.id;
     }
 
 
@@ -85,15 +87,15 @@ public class OrangeHrmCandidateStepdefs {
         softAssert.assertAll();
     }
 
-    @Given("I delete candidate using API with {int} id and receive {int} status code")
-    public void iDeleteCandidateUsingAPIWithIdAndReceiveStatusCode(int id, int statusCode) throws JsonProcessingException {
+    @Given("I delete candidate created above using API with the candidate id and receive {int} status code")
+    public void iDeleteCandidateCreatedAboveUsingAPIWithTheIdAndReceiveStatusCode(int statusCode) throws JsonProcessingException {
         List<Integer> ids = new ArrayList<>();
-        ids.add(id);
+        ids.add(candidateId);
         deleteCandidateResponseModel = CandidateUtils.deleteCandidate(cookieValue,ids,statusCode);
     }
 
-    @Then("I should receive successful delete response with {int} id")
-    public void iShouldReceiveSuccessfulDeleteResponseWithId(int id) {
-        Assert.assertEquals(deleteCandidateResponseModel.data.get(0),id, "deleted id is not correct in the response");
+    @Then("I should receive successful delete response with the same candidate id")
+    public void iShouldReceiveSuccessfulDeleteResponseWithTheSameId() {
+        Assert.assertEquals(deleteCandidateResponseModel.data.get(0),candidateId, "deleted id is not correct in the response");
     }
 }
