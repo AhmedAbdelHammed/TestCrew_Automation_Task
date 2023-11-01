@@ -12,16 +12,12 @@ This is the automation task for test crew and the project includes the below:
 - Maven.
 - Selenium 4.
 - Cucumber.
-- TestNG.
-- RestAssured.
-- Jackson.
+- TestNG.  
 - Lombok.
 
 **How to Run the project**
 - To run the STC subscription test cases run the below command.   
   `mvn test -Dcucumber.filter.tags=@STCWeb`.
-- To run the OrangeHRM API test cases run the below command.  
-  `mvn test -Dcucumber.filter.tags=@OrangeHrmAPI`.
 
 **Report**.   
 After running any of the above commands you will find the run report generated in **'target/report/cucumber.html'**.
@@ -40,9 +36,5 @@ You can change project configurations through src/resources/config.properties fi
 
 - **timeout**: the configuration for the waits timeout in seconds.
 - **stc-url**: the base url for STC subscription page.
-- **orangehrm-url:** the base url for OrangeHRM.
 - **browser-type**: specify here the browser type for running the tests ("chrome" or "edge" or "firefox".
-- **headless**: set to true or false to specify if the browser should be headless or not in test running. default: false.
-- **orangehrm-username**: admin username for OrangeHRM login.
-- **orangehrm-password**: admin password for OrangeHRM password.
-- **session-cookie-name**: OrangeHRM session cookie name for extraction to authenticate the APIs. 
+- **headless**: set to true or false to specify if the browser should be headless or not in test running. default: false.  

@@ -37,7 +37,7 @@ public class Hooks {
      */
     @Before
     public static void beforeScenario(Scenario scenario){
-        if(scenario.getSourceTagNames().toString().contains("STCWeb")) BrowserHelper.navigateToURL(url);
+       BrowserHelper.navigateToURL(url);
     }
 
     /**
